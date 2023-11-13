@@ -5,25 +5,27 @@ using UnityEngine;
 
 public class ColorChange : MonoBehaviour
 {
-    public List<Texture> hairTextureList;
-    public Material hairMaterial;
+    public List<Texture> mainModelHairTextureList;
+    public List<Texture> changeModelJacketTextureList;
+    public Material mainModelhHairMaterial;
+    public Material changeModelJacketMaterial;
 
-    private void Update()
+    public void ChangeHairColor()
     {
-        ChangeHairCoclor();
-    }
-
-    public void ChangeHairCoclor()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        int currentHairTextureIndex = mainModelHairTextureList.IndexOf(mainModelhHairMaterial.mainTexture);
+        currentHairTextureIndex++;
+        if (currentHairTextureIndex >= mainModelHairTextureList.Count)
         {
-            int currentHairTextureIndex = hairTextureList.IndexOf(hairMaterial.mainTexture);
-            currentHairTextureIndex++;
-            if(currentHairTextureIndex >= hairTextureList.Count)
-            {
-                currentHairTextureIndex = 0;
-            }
-            hairMaterial.mainTexture = hairTextureList[currentHairTextureIndex];
+            currentHairTextureIndex = 0;
         }
+        mainModelhHairMaterial.mainTexture = mainModelHairTextureList[currentHairTextureIndex];
+
+        int changeHairTextureIndex = changeModelJacketTextureList.IndexOf(changeModelJacketMaterial.mainTexture);
+        changeHairTextureIndex++;
+        if(changeHairTextureIndex >= changeModelJacketTextureList.Count)
+        {
+            changeHairTextureIndex = 0;
+        }
+        changeModelJacketMaterial.mainTexture = changeModelJacketTextureList[changeHairTextureIndex];
     }
 }
